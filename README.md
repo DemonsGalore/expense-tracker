@@ -5,9 +5,10 @@
 - node.js
 - axios
 - GraphQL
+- Apollo Server
 - Material UI
-- JSON Server
+- JSON Server (TEMP)
 - (TypeScript)
 - (Passport)
 - (Google Login)
-- (Firestore)
+- (Firestore/MongoDB)

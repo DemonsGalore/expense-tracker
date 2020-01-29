@@ -1,0 +1,13 @@
+const { gql } = require('apollo-server-express');
+
+module.exports = gql`
+  extend type Query {
+    category(id: ID!): Category!
+    categories: [Category!]!
+  }
+
+  type Category {
+    id: ID!
+    name: String!
+  }
+`;
