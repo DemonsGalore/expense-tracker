@@ -1,0 +1,35 @@
+{
+  "name": "expense-tracker",
+  "version": "0.0.1",
+  "description": "Expense Tracker",
+  "main": "server.js",
+  "scripts": {
+    "dev:server": "nodemon server.js",
+    "json:server": "json-server --watch data.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DemonsGalore/expense-tracker.git"
+  },
+  "keywords": [
+    "expense",
+    "tracker",
+    "budget"
+  ],
+  "author": "Andreas Stopat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DemonsGalore/expense-tracker/issues"
+  },
+  "homepage": "https://github.com/DemonsGalore/expense-tracker#readme",
+  "dependencies": {
+    "apollo-server-express": "^2.9.16",
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "graphql": "^14.6.0",
+    "json-server": "^0.15.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
