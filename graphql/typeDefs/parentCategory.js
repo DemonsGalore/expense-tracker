@@ -2,20 +2,19 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
   extend type Query {
-    category(_id: ID!): Category!
-    categories: [Category!]!
+    parentCategory(_id: ID!): ParentCategory!
+    parentCategories: [ParentCategory!]!
   }
 
   extend type Mutation {
-    addCategory(
+    addParentCategory(
       name: String!
-      parent: ID!
-    ): Category
+    ): ParentCategory
   }
 
-  type Category {
+  type ParentCategory {
     _id: ID!
     name: String!
-    parent: Category!
+    children: [Category]
   }
 `;

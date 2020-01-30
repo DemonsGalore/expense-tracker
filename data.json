@@ -1,11 +1,41 @@
 {
   "categories": [
     {
-      "_id": "5e3324bea76d7b09180c3b3a",
-      "name": "Miete"
+      "_id": "5e333c8d7a67891c28406033",
+      "name": "Benzin",
+      "parent": "5e333c757a67891c28406032"
     },
     {
-      "_id": "5e332789f8e74f0a48b87e84",
+      "_id": "5e333c927a67891c28406034",
+      "name": "Steuern",
+      "parent": "5e333c757a67891c28406032"
+    },
+    {
+      "_id": "5e333cfb7a67891c28406039",
+      "name": "Miete",
+      "parent": "5e333ced7a67891c28406038"
+    },
+    {
+      "_id": "5e333d037a67891c2840603a",
+      "name": "Renovierung",
+      "parent": "5e333ced7a67891c28406038"
+    }
+  ],
+  "parent_categories": [
+    {
+      "children": [
+        "5e333c8d7a67891c28406033",
+        "5e333c927a67891c28406034"
+      ],
+      "_id": "5e333c757a67891c28406032",
+      "name": "Auto"
+    },
+    {
+      "children": [
+        "5e333cfb7a67891c28406039",
+        "5e333d037a67891c2840603a"
+      ],
+      "_id": "5e333ced7a67891c28406038",
       "name": "Haus"
     }
   ]
