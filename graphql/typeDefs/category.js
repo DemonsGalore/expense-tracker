@@ -2,12 +2,18 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
   extend type Query {
-    category(id: ID!): Category!
+    category(_id: ID!): Category!
     categories: [Category!]!
   }
 
+  extend type Mutation {
+    addCategory(
+      name: String!
+    ): Category
+  }
+
   type Category {
-    id: ID!
+    _id: ID!
     name: String!
   }
 `;

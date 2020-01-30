@@ -1,12 +1,12 @@
 {
   "categories": [
     {
-      "id": "1",
-      "name": "car"
+      "_id": "5e3324bea76d7b09180c3b3a",
+      "name": "Miete"
     },
     {
-      "id": "2",
-      "name": "hobbies"
+      "_id": "5e332789f8e74f0a48b87e84",
+      "name": "Haus"
     }
   ]
 }

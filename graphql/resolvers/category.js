@@ -1,4 +1,6 @@
 const axios = require('axios');
+const mongoose = require('mongoose');
+const { Category } = require('../../models');
 
 module.exports = {
   Query: {
@@ -13,5 +15,17 @@ module.exports = {
       return data;
     }
   },
-  Mutation: {}
+  Mutation: {
+    addCategory: async (root, args, context, info) => {
+      const { name } = args;
+
+      const newCategory = new Category({
+        name
+      });
+
+      await axios.post('http://localhost:3000/categories', newCategory);
+
+      return newCategory;
+    }
+  }
 };
