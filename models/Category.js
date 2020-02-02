@@ -10,6 +10,10 @@ const categorySchema = new Schema({
   parent: {
     type: ObjectId,
     ref: 'parent_categories',
+  },
+  expenses: {
+    type: [ObjectId],
+    ref: 'expenses'
   }
 }, {
   timestamps: true

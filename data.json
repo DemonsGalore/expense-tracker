@@ -1,42 +1,29 @@
 {
   "categories": [
     {
-      "_id": "5e333c8d7a67891c28406033",
+      "expenses": [
+        "5e36c712c9518f2a0c1df141"
+      ],
+      "_id": "5e36c57d0e61cf2b5456cd5f",
       "name": "Benzin",
-      "parent": "5e333c757a67891c28406032"
-    },
-    {
-      "_id": "5e333c927a67891c28406034",
-      "name": "Steuern",
-      "parent": "5e333c757a67891c28406032"
-    },
-    {
-      "_id": "5e333cfb7a67891c28406039",
-      "name": "Miete",
-      "parent": "5e333ced7a67891c28406038"
-    },
-    {
-      "_id": "5e333d037a67891c2840603a",
-      "name": "Renovierung",
-      "parent": "5e333ced7a67891c28406038"
+      "parent": "5e36c5034eceb908ccfec686"
     }
   ],
   "parent_categories": [
     {
       "children": [
-        "5e333c8d7a67891c28406033",
-        "5e333c927a67891c28406034"
+        "5e36c57d0e61cf2b5456cd5f"
       ],
-      "_id": "5e333c757a67891c28406032",
+      "_id": "5e36c5034eceb908ccfec686",
       "name": "Auto"
-    },
+    }
+  ],
+  "expenses": [
     {
-      "children": [
-        "5e333cfb7a67891c28406039",
-        "5e333d037a67891c2840603a"
-      ],
-      "_id": "5e333ced7a67891c28406038",
-      "name": "Haus"
+      "_id": "5e36c712c9518f2a0c1df141",
+      "title": "Tanken",
+      "date": "2020-02-02T12:21:49.490Z",
+      "category": "5e36c57d0e61cf2b5456cd5f"
     }
   ]
 }

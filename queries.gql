@@ -1,0 +1,43 @@
+// Add Parent Category
+
+mutation{
+  addParentCategory(
+    name:"Auto"
+  ) {
+    _id
+    name
+  }
+}
+
+// Add Category
+mutation{
+  addCategory(
+    name:"Benzin",
+    parent:"5e36c5034eceb908ccfec686"
+  ) {
+    _id
+    name
+    parent
+  }
+}
+
+// Add Expense
+mutation{
+  addExpense(
+    title:"Tanken",
+    date:"2020-02-02T12:21:49.490Z",
+    category:"5e36c57d0e61cf2b5456cd5f"
+  ) {
+    	_id
+    	title
+  		date
+  }
+}
+
+{
+  expensesFromCategory(category:"5e36c57d0e61cf2b5456cd5f")
+  {
+    _id
+    date
+  }
+}

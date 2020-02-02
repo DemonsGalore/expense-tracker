@@ -4,24 +4,24 @@ const { Category, ParentCategory } = require('../../models');
 module.exports = {
   Query: {
     category: async (root, { id }, context, info) => {
-      const { data } = await axios.get(`http://localhost:3000/categories/${id}`);
-      
-      return data;
+      const response = await axios.get(`http://localhost:3000/categories/${id}`);
+
+      return response.data;
     },
     categories: async (root, args, context, info) => {
-      const { data } = await axios.get('http://localhost:3000/categories');
+      const response = await axios.get('http://localhost:3000/categories');
 
-      return data;
+      return response.data;
     },
     parentCategory: async (root, { id }, context, info) => {
-      const { data } = await axios.get(`http://localhost:3000/parent_categories/${id}`);
-      
-      return data;
+      const response = await axios.get(`http://localhost:3000/parent_categories/${id}`);
+
+      return response.data;
     },
     parentCategories: async (root, args, context, info) => {
-      const { data } = await axios.get('http://localhost:3000/parent_categories');
+      const response = await axios.get('http://localhost:3000/parent_categories');
 
-      return data;
+      return response.data;
     }
   },
   Mutation: {
@@ -33,17 +33,13 @@ module.exports = {
         parent
       });
 
-      console.log(newCategory);
-      
-
       await axios.post('http://localhost:3000/categories', newCategory);
 
-      const {data} = await axios.get(`http://localhost:3000/parent_categories/${parent}`);
+      const response = await axios.get(`http://localhost:3000/parent_categories/${parent}`);
 
-      data.children.push(newCategory._id);
+      response.data.children.push(newCategory._id);
 
-      await axios.put(`http://localhost:3000/parent_categories/${parent}`, data);
-      
+      await axios.put(`http://localhost:3000/parent_categories/${parent}`, response.data);
 
       return newCategory;
     },

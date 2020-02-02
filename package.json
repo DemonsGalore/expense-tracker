@@ -8,7 +8,9 @@
     "json:server": "json-server --watch data.json --id _id"
   },
   "nodemonConfig": {
-    "ignore": ["data.json"]
+    "ignore": [
+      "data.json"
+    ]
   },
   "repository": {
     "type": "git",
