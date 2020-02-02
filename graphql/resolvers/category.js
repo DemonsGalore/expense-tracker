@@ -4,22 +4,22 @@ const { Category, ParentCategory } = require('../../models');
 module.exports = {
   Query: {
     category: async (root, { id }, context, info) => {
-      const response = await axios.get(`http://localhost:3000/categories/${id}`);
+      const response = await axios.get(`http://localhost:5000/categories/${id}`);
 
       return response.data;
     },
     categories: async (root, args, context, info) => {
-      const response = await axios.get('http://localhost:3000/categories');
+      const response = await axios.get('http://localhost:5000/categories');
 
       return response.data;
     },
     parentCategory: async (root, { id }, context, info) => {
-      const response = await axios.get(`http://localhost:3000/parent_categories/${id}`);
+      const response = await axios.get(`http://localhost:5000/parent_categories/${id}`);
 
       return response.data;
     },
     parentCategories: async (root, args, context, info) => {
-      const response = await axios.get('http://localhost:3000/parent_categories');
+      const response = await axios.get('http://localhost:5000/parent_categories');
 
       return response.data;
     }
@@ -33,13 +33,13 @@ module.exports = {
         parent
       });
 
-      await axios.post('http://localhost:3000/categories', newCategory);
+      await axios.post('http://localhost:5000/categories', newCategory);
 
-      const response = await axios.get(`http://localhost:3000/parent_categories/${parent}`);
+      const response = await axios.get(`http://localhost:5000/parent_categories/${parent}`);
 
       response.data.children.push(newCategory._id);
 
-      await axios.put(`http://localhost:3000/parent_categories/${parent}`, response.data);
+      await axios.put(`http://localhost:5000/parent_categories/${parent}`, response.data);
 
       return newCategory;
     },
@@ -50,7 +50,7 @@ module.exports = {
         name
       });
 
-      await axios.post('http://localhost:3000/parent_categories', newParentCategory);
+      await axios.post('http://localhost:5000/parent_categories', newParentCategory);
 
       return newParentCategory;
     }

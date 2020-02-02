@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "dev:server": "nodemon server.js",
-    "json:server": "json-server --watch data.json --id _id"
+    "json:server": "json-server --watch data.json --id _id --port 5000",
+    "client": "cd client && yarn start",
+    "dev": "concurrently \"yarn dev:server\" \"yarn json:server\" \"yarn client\""
   },
   "nodemonConfig": {
     "ignore": [
@@ -36,6 +38,7 @@
     "mongoose": "^5.8.10"
   },
   "devDependencies": {
+    "concurrently": "^5.1.0",
     "nodemon": "^2.0.2"
   }
 }

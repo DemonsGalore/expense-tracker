@@ -1,12 +1,14 @@
 # expense-tracker
 
+Frontend:
 - React
+- Material UI
+
 - Express
 - node.js
 - axios
 - GraphQL
 - Apollo Server
-- Material UI
 - JSON Server (TEMP)
 - (TypeScript)
 - (Passport)
