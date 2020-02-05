@@ -6,8 +6,8 @@
   "scripts": {
     "dev:server": "nodemon server.js",
     "json:server": "json-server --watch data.json --id _id --port 5000",
-    "client": "cd client && yarn start",
-    "dev": "concurrently \"yarn dev:server\" \"yarn json:server\" \"yarn client\""
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run dev:server\" \"npm run json:server\" \"npm run client\""
   },
   "nodemonConfig": {
     "ignore": [
