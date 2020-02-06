@@ -7,9 +7,8 @@ module.exports = gql`
   }
 
   extend type Mutation {
-    addParentCategory(
-      name: String!
-    ): ParentCategory
+    addParentCategory(name: String!): ParentCategory
+    deleteParentCategory(id: ID): Status
   }
 
   type ParentCategory {

@@ -6,6 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import DeleteParentCategory from './DeleteParentCategory';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -41,18 +42,21 @@ const Categories = () => {
       {loading ?
         <p>Loading</p>
       : (
-        <FormControl className={classes.formControl}>
-          <InputLabel id="category-select-label">Category</InputLabel>
-          <Select
-            labelId="category-select-label"
-            id="category-select"
-            value={category}
-            onChange={handleChange}
-          >
-            <MenuItem value="">None</MenuItem>
-            {data.parentCategories.map(category => <MenuItem key={category._id} value={category._id}>{category.name}</MenuItem>)}
-          </Select>
-        </FormControl>
+        <>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="category-select-label">Category</InputLabel>
+            <Select
+              labelId="category-select-label"
+              id="category-select"
+              value={category}
+              onChange={handleChange}
+            >
+              <MenuItem value="">None</MenuItem>
+              {data.parentCategories.map(category => <MenuItem key={category._id} value={category._id}>{category.name}</MenuItem>)}
+            </Select>
+          </FormControl>
+          <DeleteParentCategory parentCategories={data.parentCategories} />
+        </>
       )}
     </>
   );

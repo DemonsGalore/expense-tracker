@@ -25,9 +25,7 @@ module.exports = {
     }
   },
   Mutation: {
-    addCategory: async (root, args, context, info) => {
-      const { name, parent } = args;
-
+    addCategory: async (root, { name, parent }, context, info) => {
       const newCategory = new Category({
         name,
         parent
@@ -43,9 +41,7 @@ module.exports = {
 
       return newCategory;
     },
-    addParentCategory: async (root, args, context, info) => {
-      const { name } = args;
-
+    addParentCategory: async (root, { name }, context, info) => {
       const newParentCategory = new ParentCategory({
         name
       });
@@ -53,6 +49,9 @@ module.exports = {
       await axios.post('http://localhost:5000/parent_categories', newParentCategory);
 
       return newParentCategory;
-    }
+    },
+    deleteParentCategory: async (root, { id }, context, info) => {
+      return await axios.delete(`http://localhost:5000/parent_categories/${id}`);
+    },
   }
 };
