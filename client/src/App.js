@@ -1,22 +1,24 @@
 import React from 'react';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Categories from './pages/Categories';
 import CreateParentCategory from './pages/CreateParentCategory';
 import './App.css';
-
-const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
-});
+import { decrement, increment } from './actions/counterActions';
 
 const App = () => {
+  const counter = useSelector(state => state.counter);
+  const dispatch = useDispatch();
+
   return (
-    <ApolloProvider client={client}>
+    <>
       <Typography variant="h3">Expense Tracker</Typography>
       <Categories />
       <CreateParentCategory />
-    </ApolloProvider>
+      <h1>Counter:</h1>{counter}
+      <button type="button" onClick={() => dispatch(increment(5))}>count up</button>
+      <button type="button" onClick={() => dispatch(decrement())}>count down</button>
+    </>
   );
 };
 
