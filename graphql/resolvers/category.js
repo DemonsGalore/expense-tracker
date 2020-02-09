@@ -51,7 +51,9 @@ module.exports = {
       return newParentCategory;
     },
     deleteParentCategory: async (root, { id }, context, info) => {
-      return await axios.delete(`http://localhost:5000/parent_categories/${id}`);
+      const response = await axios.delete(`http://localhost:5000/parent_categories/${id}`);
+
+      return { status: response.status, id };
     },
   }
 };

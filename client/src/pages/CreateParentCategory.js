@@ -1,33 +1,43 @@
-import React from 'react';
-import gql from 'graphql-tag';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-
-const ADD_PARENT_CATEGORY = gql`
-  mutation AddParentCategory($name: String!) {
-    addParentCategory(name: $name) {
-      name
-    }
-  }
-`;
+import { ADD_PARENT_CATEGORY } from '../grapqhl/mutations';
+import { GET_PARENT_CATEGORIES } from '../grapqhl/queries';
+import Typography from '@material-ui/core/Typography';
 
 const CreateParentCategory = () => {
-  let input;
-  const [addParentCategory, { data }] = useMutation(ADD_PARENT_CATEGORY);
+  const [category, setCategory] = useState('');
+
+  const handleChange = event => {
+    setCategory(event.target.value);
+  };
+
+  const [addParentCategory] = useMutation(
+    ADD_PARENT_CATEGORY,
+    {
+      update(cache, { data: { addParentCategory } }) {
+        const { parentCategories } = cache.readQuery({ query: GET_PARENT_CATEGORIES });
+
+        cache.writeQuery({
+          query: GET_PARENT_CATEGORIES,
+          data: { parentCategories: parentCategories.concat([addParentCategory]) },
+        });
+      }
+    }
+  );
 
   return (
-    <div>
-      <h1>New</h1>
+    <>
+      <Typography variant="h5">Neue Kategorie</Typography>
       <form
-        onSubmit={e => {
-          e.preventDefault();
-          addParentCategory({ variables: { name: input.value } });
-          input.value = '';
-        }}
-      >
-        <input ref={node => input = node } />
+        onSubmit={event => {
+          event.preventDefault();
+          addParentCategory({ variables: { name: category } });
+          setCategory('');
+        }}>
+        <input onChange={handleChange} value={category} />
         <button type="submit">Add Parent Category</button>
       </form>
-    </div>
+    </>
   );
 };
 

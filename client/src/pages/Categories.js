@@ -1,63 +1,44 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import DeleteParentCategory from './DeleteParentCategory';
-
-const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-const PARENT_CATEGORIES = gql`
-  {
-    parentCategories {
-      _id
-      name
-    }
-  }
-`;
+import React from 'react';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { GET_PARENT_CATEGORIES } from '../grapqhl/queries';
+import { DELETE_PARENT_CATEGORY } from '../grapqhl/mutations';
+import Typography from '@material-ui/core/Typography';
 
 const Categories = () => {
-  const { loading, error, data } = useQuery(PARENT_CATEGORIES);
+  const { data, loading, error } = useQuery(GET_PARENT_CATEGORIES);
 
-  const classes = useStyles();
-  const [category, setCategory] = useState('');
+  const [deleteParentCategory] = useMutation(
+    DELETE_PARENT_CATEGORY,
+    {
+      update(cache, { data: { deleteParentCategory } }) {
+        const { parentCategories } = cache.readQuery({ query: GET_PARENT_CATEGORIES });
 
-  const handleChange = event => {
-    setCategory(event.target.value);
-  };
+        cache.writeQuery({
+          query: GET_PARENT_CATEGORIES,
+          data: { parentCategories: parentCategories.filter(category => category._id !== deleteParentCategory.id) },
+        });
+      }
+    }
+  );
 
   return (
     <>
       {loading ?
-        <p>Loading</p>
-      : (
-        <>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="category-select-label">Category</InputLabel>
-            <Select
-              labelId="category-select-label"
-              id="category-select"
-              value={category}
-              onChange={handleChange}
-            >
-              <MenuItem value="">None</MenuItem>
-              {data.parentCategories.map(category => <MenuItem key={category._id} value={category._id}>{category.name}</MenuItem>)}
-            </Select>
-          </FormControl>
-          <DeleteParentCategory parentCategories={data.parentCategories} />
-        </>
-      )}
+        <p>Loading...</p>
+      : <>
+        {(data && data.parentCategories.length > 0) ? (
+          <>
+            <Typography variant="h5">Kategorien</Typography>
+            <ul>
+              {data.parentCategories.map(category => <li key={category._id}>{category.name}
+                <button type="button" onClick={() => deleteParentCategory({ variables: { id: category._id } })}>DELETE</button>
+              </li>)}
+            </ul>
+          </>
+        ) : (
+          <p>Data not found</p>
+        )}
+      </>}
     </>
   );
 };

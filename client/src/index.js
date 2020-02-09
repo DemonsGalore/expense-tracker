@@ -1,17 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import store from './store';
-import './index.css';
+import client from './apollo-client';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
-// Apollo Client initialization
-const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
-});
+import './index.css';
 
 ReactDOM.render(
   <ApolloProvider client={client}>
